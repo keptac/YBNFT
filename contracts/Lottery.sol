@@ -43,7 +43,7 @@ contract Lottery {
         require(block.timestamp >= lotteryDuration, "Lottery duration ended");
 
         ///@notice Trasnfer amount from user to Investor Contract
-        investor.invest{ value: _amount }(msg.sender);
+        investor.invest{ value: _amount }();
 
         // emit Transfer(msg.sender, investor, _amount);
     }
