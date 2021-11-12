@@ -5,7 +5,6 @@ contract Investor {
     uint public totalWagers;
     address payable public owner;
 
-
     constructor() {
         owner = payable(msg.sender);
     }
