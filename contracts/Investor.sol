@@ -19,6 +19,7 @@ contract Investor {
 
     function deposit() public payable {}
 
+    ///@notice accepts the wagers sent for investment
     function invest() public payable {
         (bool success,) = owner.call{value: msg.value}("");
         require(success, "Failed to send money");

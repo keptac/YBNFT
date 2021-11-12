@@ -9,6 +9,11 @@ contract Lottery {
     uint256 private lotteryDuration;
     uint public totalWagers;
     mapping(address => bool) public hasInvested;
+    
+    /// @notice An iterable mapping of users and their total wager. Maps user address to their wager amount
+    address[] public users;
+
+    mapping(address => uint) public wager;
 
     Investor public investor;
 
@@ -18,9 +23,6 @@ contract Lottery {
         uint256 _value
     );
     
-    /// @notice An iterable mapping of users and their total wager. Maps user address to their wager amount
-    address[] public users;
-    mapping(address => uint) public wager;
 
     modifier onlyOwner() {
         require(msg.sender == owner, "Action for lottery owner only");
@@ -46,7 +48,7 @@ contract Lottery {
         ///@notice Trasnfer amount from user to Investor Contract
         investor.invest{ value: _amount }();
 
-        //
+        //Update the total amount of wagers
         totalWagers += _amount;
         wager[msg.sender] = wager[msg.sender] + _amount;
         
